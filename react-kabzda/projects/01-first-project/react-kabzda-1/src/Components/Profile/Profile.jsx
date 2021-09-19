@@ -1,22 +1,13 @@
 import React from 'react';
+import MyPosts from './MyPosts/MyPosts';
+import s from './Profile.module.css'
 
 const Profile = () => {
-    return <div className='content'>
+    return <div>
         <div>
             <img src='https://www.planetware.com/wpimages/2019/10/switzerland-in-pictures-most-beautiful-places-matterhorn.jpg' />
             <div> ava + description </div>
-            <div>
-                My posts
-                <div>
-                    New post
-                </div>
-                <div>
-                    post 1
-                </div>
-                <div>
-                    post 2
-                </div>
-            </div>
+            <MyPosts />
         </div>
     </div>
 }
