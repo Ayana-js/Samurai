@@ -2,39 +2,38 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Dialogs.module.css'
 
+const DialogItem = (props) => {
+
+    let path = '/dialogs/' + props.id
+
+    return <div className={s.dialog + ' ' + s.active}>
+        <NavLink to={path}>  {props.name} </NavLink>
+    </div>
+}
+
+const Message = (props) => {
+    return <div className={s.message}>
+        {props.message}
+    </div>
+}
+
 const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <div className={s.dialog + ' ' + s.active}>
-                    <NavLink to='/dialogs/1'>  Ayana </NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/2'>Aizhan </NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/3'>Tom Hardy </NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/3'>Sam Claflin </NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/4'>Chris Evans</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/5'>Jason Momoa</NavLink>
-                </div>
+                <DialogItem name="Ayana" id="1" />
+                <DialogItem name="Tom Hardy" id="2" />
+                <DialogItem name="Sam Claflin" id="3" />
+                <DialogItem name="Jhonny Depp" id="4" />
+                <DialogItem name="Jason Momoa" id="5" />
+                <DialogItem name="Chris Evans" id="6" />
             </div>
             <div className={s.messages}>
-                <div className={s.message}>
-                    Hi, I'm Ayana
-                </div>
-                <div className={s.message}>
-                    Hello
-                </div>
-                <div className={s.message}>
-                    Yo, you're both so beautiful
-                </div>
+               <Message message="Hi, I'm Ayana"/>
+               <Message message="Yo, you're so beautiful"/>
+               <Message message="Yo, you're so beautiful"/>
+               <Message message="Yo, you're so beautiful"/>
+               <Message message="Yo, you're so beautiful"/>
             </div>
         </div>
     )
