@@ -1,0 +1,35 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+    padding: 10px;
+}
+
+.dialogsItem {
+    text-decoration: none;
+}
+
+.activeDialogItem {
+    color: chocolate;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+    padding: 7px;
+}
+
+.ava {
+    width: 30px;
+    height: 30px;
+}
+
+.text {
+    padding: 10px;
+    display: inline;
+}
+

@@ -1,14 +1,15 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 import s from './Profile.module.css'
 
-const Profile = () => {
+const Profile = (props) => {
     return <div>
-        <div>
-            <img src='https://www.planetware.com/wpimages/2019/10/switzerland-in-pictures-most-beautiful-places-matterhorn.jpg' />
-            <div> ava + description </div>
-            <MyPosts />
-        </div>
+            <ProfileInfo />
+            <MyPosts posts={props.state.posts} 
+                     dispatch={props.dispatch}
+                     newPostText={props.state.newPostText} 
+             />
     </div>
 }
 
