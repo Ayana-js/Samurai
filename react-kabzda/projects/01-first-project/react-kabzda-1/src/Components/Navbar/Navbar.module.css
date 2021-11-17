@@ -8,5 +8,9 @@
     text-decoration: none;
     color: white;
     padding: 10px;
-    color: white;
+}
+
+.activeLink {
+    text-decoration: none;
+    color: brown;
 }
