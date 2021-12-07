@@ -1,3 +1,12 @@
 .descriptionInfo {
     padding: 10px;
 }
+
+.profileName {
+    font-weight: bold;
+}
+
+.photo {
+    width: 200px;
+    height: 200px;
+}

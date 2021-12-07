@@ -1,21 +1,20 @@
 import React from 'react';
 import './App.css';
-import Dialogs from './Components/Dialogs/Dialogs';
-import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar';
-import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import {Route} from "react-router-dom";
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
+import ProfileContainer from './Components/Profile/ProfileContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
 
 
 const App = (props) => {
   return (
     <div className='app-wrapper'>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/music' component={Music}/>
@@ -23,10 +22,12 @@ const App = (props) => {
         <Route path='/news' component={News}/>
         <Route path='/dialogs' 
                render={ () => < DialogsContainer />} />
-        <Route path='/profile' 
-               render={ () => < Profile />}/>
+        <Route path='/profile/:userId?' 
+               render={ () => < ProfileContainer />}/>
         <Route path='/users' 
                render={ () => < UsersContainer />}/>
+        <Route path='/login'
+               render={ () => <Login />} />
       </div>
     </div>
   );
