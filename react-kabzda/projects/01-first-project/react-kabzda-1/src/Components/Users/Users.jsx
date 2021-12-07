@@ -1,32 +1,40 @@
 import React from "react";
 import s from "./Users.module.css"
-import axios from "axios";
+import userPhoto from '../../assets/images/user.png'
+import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
-    debugger
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users?api_key=2c44fd22-9726-46ca-b8a9-6b121f75a70d").then(response => { 
-        props.setUsers(response.data.items)
-    })
+    let pageCount = Math.ceil(props.totalPagesCount / props.pagesSize)
+    let pages = []
+    for (let i = 1; i <= pageCount; i++) {
+      pages.push(i)
     }
-
-    return (
-    <div> {
+    return <div>
+      <div className={s.pages}>
+        {
+          pages.map(p=> <span className={props.currentPage === p && s.selectedPage}
+                       onClick={ () => props.onChangePage(p) }>{p}</span>)
+        }
+      </div>
+      {
         props.users.map(u=> <div key={u.id}> 
-                <div> {u.name} </div>
-                <div> <img src={u.photoUrl} className={s.ava} /> </div>
-                <div> {u.status} </div>
-                <div> {u.country} </div>
-                <div> {u.city} </div>
+                <div> {u.name} </div>             
+                <div> <NavLink to={"/profile/" + u.id}>
+                        <img alt="" src={u.photos.small !=null ? u.photos.small: userPhoto} className={s.ava} />
+                      </NavLink> 
+                </div>
                 <div> {u.followed
-                ?<button onClick ={() => {props.unfollow(u.id)}} > UNFOLLOW </button>
-                :<button onClick ={ () => {props.follow(u.id)} } > FOLLOW </button>}
+                ?<button disabled={props.userFollowingProcess.some(id=> id===u.id)} onClick ={() => {
+                  props.unfollow(u.id)
+                  }} > UNFOLLOW </button>
+                :<button  disabled={props.userFollowingProcess.some(id=> id===u.id)} onClick ={ () => {
+                  props.follow(u.id)
+                 }} > FOLLOW </button>}
                 </div>                
              </div> 
              )
         }
     </div>
-    )
-}
+  }
 
 export default Users
