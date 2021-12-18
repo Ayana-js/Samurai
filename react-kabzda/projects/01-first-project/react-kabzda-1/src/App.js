@@ -12,7 +12,7 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 
 
-const App = (props) => {
+const App = () => {
   return (
     <div className='app-wrapper'>
       <HeaderContainer />
