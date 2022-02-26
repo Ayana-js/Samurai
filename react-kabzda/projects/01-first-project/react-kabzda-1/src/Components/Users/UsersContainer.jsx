@@ -15,7 +15,6 @@ import { WithAuthRedirect } from '../WithAuthRedirect/WithAuthRedirect';
 import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
-
     componentDidMount() {
       this.props.getUsers( this.props.pagesSize, this.props.currentPage)
       }
