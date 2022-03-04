@@ -23,13 +23,30 @@ export const UserAPI = {
     }
 }
 
-export const setAuthMe = () => {
-    return instance.get(`auth/me`)
-    .then(response => response.data)
+export const AuthAPI = {
+    authMe () {
+        return instance.get(`auth/me`)
+        .then(response => response.data)
+    },
+    login ( {email, password, rememberMe}) {
+        return instance.post('auth/login', {email, password, rememberMe})
+        .then(response => response.data)
+    }
 }
 
-export const setProfile = (userId) => {
-    return instance.get('profile/' + userId)
-    .then(response => response.data)
-}
+export const ProfileAPI = {
+    setProfile (userId) {
+        return instance.get('profile/' + userId)
+        .then(response => response.data)
+    },
 
+    setStatus (userId) {
+        return instance.get('profile/status/' + userId)
+        .then(response => response.data)
+    },
+
+    updateStatus (status) {
+        return instance.put('profile/status', {status})
+        .then(response => response.data)
+    }
+}   

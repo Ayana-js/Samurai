@@ -1,8 +1,10 @@
-import { setProfile } from "../api/api"
+import { ProfileAPI } from "../api/api"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
+// const UPDATE_STATUS = 'UPDATE_STATUS'
 
 let initialState = {
     posts: [
@@ -10,7 +12,8 @@ let initialState = {
         {id: 2, message: "It's my first post", likesCount: 15},
     ],
     newPostText: [''],
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -36,6 +39,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             } 
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
@@ -43,13 +51,35 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({ type: ADD_POST })
 export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const setStatus = (status) => ({type: SET_STATUS, status})
 
 export const getProfile = (userId) => {
     return (dispatch) => {
-        if (!userId) {userId = 2}
-        setProfile(userId)
+        if (!userId) {userId = 20946}
+        ProfileAPI.setProfile(userId)
             .then(data => {
               dispatch (setUserProfile(data))
+        })
+    }
+}
+
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        if (!userId) {userId = 20946}
+        ProfileAPI.setStatus(userId)
+        .then(data => {
+            dispatch(setStatus(data))
+        })
+    }
+}
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        ProfileAPI.updateStatus(status)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
         })
     }
 }
