@@ -31,7 +31,7 @@ const Dialogs = (props) => {
         console.log(formData);
     }
 
-    return (
+    return (  
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 { dialogsElements }
