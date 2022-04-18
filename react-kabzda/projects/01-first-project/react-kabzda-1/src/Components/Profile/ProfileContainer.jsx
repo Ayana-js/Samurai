@@ -7,9 +7,13 @@ import { WithAuthRedirect } from '../WithAuthRedirect/WithAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {        
-         this.props.getProfile(this.props.match.params.userId)
-         this.props.getStatus(this.props.match.params.userId)
+    componentDidMount() {  
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = this.props.authorizedUserId
+        }
+         this.props.getProfile(userId)
+         this.props.getStatus(userId)
     }
     
     render () {
@@ -19,7 +23,9 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    isAuth: state.auth.isAuth,
+    authorizedUserId: state.auth.id
 })
 
 export default compose (connect (mapStateToProps, {setUserProfile, getProfile, getStatus, updateStatus}),

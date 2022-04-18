@@ -12,7 +12,8 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import LoginContainer from './Components/Login/LoginContainer';
 
 
-const App = (props) => {
+class App extends React.Component {
+  render() {
   return (
     <div className='app-wrapper'>
       <HeaderContainer />
@@ -31,7 +32,7 @@ const App = (props) => {
                render={ () => <LoginContainer />} />
       </div>
     </div>
-  );
+  )}
 }
 
 export default App;

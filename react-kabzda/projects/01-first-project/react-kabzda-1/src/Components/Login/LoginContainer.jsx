@@ -4,10 +4,8 @@ import { login } from '../../redux/authReducer';
 import { connect } from 'react-redux';
 
 const LoginContainer = (props) => {
- 
     return <Login login={props.login}/>
 }
-
 
 let mapStateToProps = (state) => ({
     rememberMe: state.auth.rememberMe,
@@ -15,4 +13,12 @@ let mapStateToProps = (state) => ({
     password: state.auth.password
 })
 
-export default connect(mapStateToProps, {login})(LoginContainer);
+// let mapStateToDispatch = (dispatch) => {
+//     return {
+//         login: (newPostText) => {
+//             dispatch(addPostActionCreator(newPostText))  
+//         }
+//     }
+// }
+
+export default connect(mapStateToProps)(LoginContainer);
