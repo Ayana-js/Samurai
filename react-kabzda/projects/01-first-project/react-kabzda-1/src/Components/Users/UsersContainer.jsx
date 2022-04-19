@@ -49,7 +49,6 @@ export default compose (
   connect(mapStateToProps, 
     { followSuccess, unfollowSuccess, setCurrentPage,
     toggleIsFetching, getUsers, follow, unfollow }),
-    WithAuthRedirect,
 ) (UsersContainer)
 
 

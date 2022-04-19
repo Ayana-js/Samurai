@@ -56,6 +56,7 @@ export const getAuthMe = () => {
              dispatch (setAuthUserData(id,email,login, true))
         }
     })
+    return 'Ayana'
 }}
 
 export const login = (email, password, rememberMe) => {    
