@@ -12,20 +12,20 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import LoginContainer from './Components/Login/LoginContainer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { initializedSuccess } from './redux/appReducer';
+import { initialize } from './redux/appReducer';
 import Preloader from './common/preloader/Preloader';
 
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initializedSuccess()
+    this.props.initialize()
   }
   render() {
 
     if (!this.props.initialized) {
       return <Preloader />
     }
-    
+
   return (
     <div className='app-wrapper'>
       <HeaderContainer />
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withRouter,
- connect(mapStateToProps, {initializedSuccess})) (App);
+ connect(mapStateToProps, {initialize})) (App);

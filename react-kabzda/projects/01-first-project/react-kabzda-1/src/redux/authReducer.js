@@ -37,7 +37,6 @@ const authReducer = (state=initialState, action) => {
         default:
             return state
     }
-
 }
 
 export const setAuthUserData = (id, email, login, isAuth) => ({
@@ -56,7 +55,6 @@ export const getAuthMe = () => {
              dispatch (setAuthUserData(id,email,login, true))
         }
     })
-    return 'Ayana'
 }}
 
 export const login = (email, password, rememberMe) => {    

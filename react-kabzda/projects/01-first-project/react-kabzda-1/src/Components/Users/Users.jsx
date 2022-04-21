@@ -13,7 +13,7 @@ const Users = (props) => {
       <div className={s.pages}>
         {
           pages.map(p=> <span className={props.currentPage === p && s.selectedPage}
-                       onClick={ () => props.onChangePage(p) }>{p}</span>)
+                       onClick={ () => props.onChangePage(p) }>{p}|</span>)
         }
       </div>
       {
@@ -21,7 +21,7 @@ const Users = (props) => {
                 <div> {u.name} </div>             
                 <div> <NavLink to={"/profile/" + u.id}>
                         <img alt="" src={u.photos.small !=null ? u.photos.small: userPhoto} className={s.ava} />
-                      </NavLink> 
+                      </NavLink>
                 </div>
                 <div> {u.followed
                 ?<button disabled={props.userFollowingProcess.some(id=> id===u.id)} onClick ={() => {

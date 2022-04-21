@@ -23,12 +23,12 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
 
 export const initialize = () => {
-    return (dispatch) => {
+    return (dispatch) => { 
         let promise = dispatch(getAuthMe())
-        debugger
-        promise.then(() => {
-            dispatch(initializedSuccess())
+         Promise.all([promise])
+            .then(() => {
+                 dispatch(initializedSuccess())
         })
 }}
 
-export default appReducer
+export default appReducer;
