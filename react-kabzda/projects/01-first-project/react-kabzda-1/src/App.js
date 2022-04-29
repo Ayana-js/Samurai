@@ -13,7 +13,7 @@ import LoginContainer from './Components/Login/LoginContainer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initialize } from './redux/appReducer';
-import Preloader from './common/preloader/Preloader';
+import Preloader from './common/Preloader/Preloader';
 
 
 class App extends React.Component {
@@ -27,6 +27,7 @@ class App extends React.Component {
     }
 
   return (
+    
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
@@ -44,6 +45,7 @@ class App extends React.Component {
                render={ () => <LoginContainer />} />
       </div>
     </div>
+  
   )}
 }
 

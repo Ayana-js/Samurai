@@ -10,13 +10,13 @@ import {
     unfollow
 } from '../../redux/usersReducer';
 import Users from './Users';
-import Preloader from '../../common/preloader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
 import { compose } from 'redux';
 import { getCurrentPage, 
          getIsFetching, 
          getPagesSize, 
          getTotalPagesCount, 
-         getUserFollowingProcess, 
+         getUserFollowingProcess,
          getUsers } from '../../redux/users-selectors';
 
 class UsersContainer extends React.Component {

@@ -8,9 +8,9 @@ import Message from "./Message/Message";
 
 const maxLength50 = maxLengthCreator(50)
 
-const DialogsForm = (props) => {
+const DialogsForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={"Enter your message"} name={"newTextMessage"} component={Textarea} validate={[required, maxLength50]} />    
             </div>
@@ -23,12 +23,12 @@ const DialogsForm = (props) => {
 
 const DialogsFormRedux = reduxForm({form: 'dialogs'}) (DialogsForm)
 
-const Dialogs = (props) => {
-    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
-    let messagesElements = props.messages.map(m  => <Message message={m.message} id={m.id} />)
+const Dialogs = ({dialogs, messages, sendMessage}) => {
+    let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
+    let messagesElements = messages.map(m  => <Message message={m.message} id={m.id} />)
 
-    const sendMessage = (values) => {
-        props.sendMessage(values.newTextMessage)
+    const onSendMessage = (values) => {
+        sendMessage(values.newTextMessage)
     }
 
     return (
@@ -40,7 +40,7 @@ const Dialogs = (props) => {
                { messagesElements }
             </div>
             <div className={s.text}> 
-            <DialogsFormRedux onSubmit={sendMessage}/>
+            <DialogsFormRedux onSubmit={onSendMessage}/>
             </div>
         </div>
     )

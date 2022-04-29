@@ -46,41 +46,31 @@ export const loginMe = ({login, password, rememberMe}) => ({
     type: LOGIN, login, password, rememberMe
 })  
 
-export const getAuthMe = () => {
-    return (dispatch) => {
-        AuthAPI.authMe()
-        .then(data => { 
-          if (data.resultCode === 0) {
-             let {id, email, login} = data.data
+export const getAuthMe = () => async (dispatch) => {
+        let response = await AuthAPI.authMe()
+          if (response.data.resultCode === 0) {
+             let {id, email, login} = response.data.data
              dispatch (setAuthUserData(id,email,login, true))
-        }
-    })
-}}
-
-export const login = (email, password, rememberMe) => {    
-    return (dispatch) => {
-        AuthAPI.login(email, password, rememberMe)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthMe())
-            }
-            else {
-                let message = data.messages.length > 0 ? data.messages[0]: "Some error"
-                dispatch(stopSubmit("login", {_error: message}))
-            }
-        })
     }
 }
 
-export const logout = () => {
-    return (dispatch) => {
-        AuthAPI.logout()
-        .then(data => {
-            if (data.resultCode === 0) {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+        let response = await AuthAPI.login(email, password, rememberMe)
+        console.log(response);
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthMe())
+            }
+            else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0]: "Some error"
+                dispatch(stopSubmit("login", {_error: message}))
+            }
+    }
+
+export const logout = () => async (dispatch) => {
+        let response = await AuthAPI.logout()
+            if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))
             }
-        })
-    }   
 }
 
 export default authReducer

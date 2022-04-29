@@ -1,6 +1,4 @@
 import React from "react";
-import { Formik } from "formik";
-import * as yup from 'yup'
 import styles from './Login.module.css'
 import { reduxForm, Field } from "redux-form";
 import { Input } from "../../common/FormsControls/FormsControls";
@@ -10,8 +8,8 @@ import { login } from "../../redux/authReducer";
 import { Redirect } from "react-router-dom";
 import style from "../../common/FormsControls/FormControl.module.css"
 
-const LoginForm = (props) => {
-  return <form onSubmit={props.handleSubmit}>
+const LoginForm = ({handleSubmit, error}) => {
+  return <form onSubmit={handleSubmit}>
   <div>
       <Field placeholder={"Email"} name={"email"} component={Input} validate={[required ]} />
   </div>
@@ -21,8 +19,8 @@ const LoginForm = (props) => {
   <div>
       <Field type={"checkbox"} name={"rememberMe"} component={Input} /> Remember me
   </div>
-  { props.error && <div className={style.formSummaryError}>
-    {props.error}
+  {error && <div className={style.formSummaryError}>
+    {error}
   </div>}
   <div>
     <button>Login</button>
@@ -32,12 +30,12 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'}) (LoginForm) 
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
    const onSubmit = (values) => {
-     props.login(values.email, values.password, values.rememberMe)
+     login(values.email, values.password, values.rememberMe)
    } 
 
-   if(props.isAuth) {
+   if(isAuth) {
       return <Redirect to={"/profile"} />
    }
 
