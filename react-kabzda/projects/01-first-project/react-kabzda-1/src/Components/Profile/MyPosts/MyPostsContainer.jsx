@@ -13,8 +13,7 @@ let mapStateToDispatch = (dispatch) => {
     return {
         addPost: (newPostText) => {
             dispatch(addPostActionCreator(newPostText))  
-        }, 
-
+        }
     }
 }
 const MyPostsContainer = connect(mapStateToProps, mapStateToDispatch)(MyPosts)

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import {Route, withRouter} from "react-router-dom";
-import DialogsContainer from './Components/Dialogs/DialogsContainer';
-import UsersContainer from './Components/Users/UsersContainer';
+// import DialogsContainer from './Components/Dialogs/DialogsContainer';
+// import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import LoginContainer from './Components/Login/LoginContainer';
@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initialize } from './redux/appReducer';
 import Preloader from './common/Preloader/Preloader';
+const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('./Components/Users/UsersContainer'));
 
 
 class App extends React.Component {
@@ -27,25 +29,27 @@ class App extends React.Component {
     }
 
   return (
-    
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
       <div className='app-wrapper-content'>
+         <Suspense fallback={<Preloader />}>
         <Route path='/music' component={Music}/>
         <Route path='/settings' component={Settings}/>
         <Route path='/news' component={News}/>
         <Route path='/dialogs' 
-               render={ () => < DialogsContainer />} />
+               render={ () => 
+                <DialogsContainer /> }/>
         <Route path='/profile/:userId?' 
                render={ () => < ProfileContainer />}/>
         <Route path='/users' 
-               render={ () => < UsersContainer />}/>
+               render={ () => 
+                <UsersContainer /> }/>  
         <Route path='/login'
                render={ () => <LoginContainer />} />
+           </Suspense>
       </div>
     </div>
-  
   )}
 }
 

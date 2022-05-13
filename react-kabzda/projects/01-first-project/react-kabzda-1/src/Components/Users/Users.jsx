@@ -6,10 +6,11 @@ const Users = ({ totalPagesCount, pagesSize, currentPage, userFollowingProcess, 
 
   return <div>
     <Pagination
-      totalPagesCount={totalPagesCount} 
+      totalItemsCount={totalPagesCount} 
       pagesSize={pagesSize} 
       currentPage={currentPage} 
-      onChangePage={onChangePage} />
+      onChangePage={onChangePage} 
+      />
       <div>
     {
       users.map(u => <User 

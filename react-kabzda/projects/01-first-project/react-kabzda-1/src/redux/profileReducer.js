@@ -63,7 +63,4 @@ export const updateStatus = (status) => async (dispatch) => {
     }
 }
 
-
-
-
 export default profileReducer

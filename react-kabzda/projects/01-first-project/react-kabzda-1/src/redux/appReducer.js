@@ -16,11 +16,9 @@ const appReducer = (state=initialState, action) => {
         default:
             return state
     }
-
 }
 
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
-
 
 export const initialize = () => {
     return (dispatch) => { 
