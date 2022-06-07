@@ -1,10 +1,8 @@
 import React from 'react' 
-import preloader from '../../assets/images/Walk.gif'
+import styles from './Preloader.module.css'
 
 let Preloader = () => {
-    return <div>
-          <img alt="" src={preloader}/>
-    </div>
+    return <div className={styles.preloader}> </div>
 }
 
 export default Preloader

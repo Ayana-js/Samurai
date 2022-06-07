@@ -4,16 +4,29 @@ import Navbar from './Components/Navbar/Navbar';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
-import {Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import Login from './Components/Login/Login';
+import LoginContainer from './Components/Login/LoginContainer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { initialize } from './redux/appReducer';
+import Preloader from './common/Preloader/Preloader.jsx';
 
+class App extends React.Component {
+  componentDidMount() {
+    this.props.initialize()
+  }
+  render() {
 
-const App = () => {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+
   return (
+    
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
@@ -28,10 +41,17 @@ const App = () => {
         <Route path='/users' 
                render={ () => < UsersContainer />}/>
         <Route path='/login'
-               render={ () => <Login />} />
+               render={ () => <LoginContainer />} />
       </div>
     </div>
-  );
+  
+  )}
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+
+export default compose(
+  withRouter,
+ connect(mapStateToProps, {initialize})) (App);

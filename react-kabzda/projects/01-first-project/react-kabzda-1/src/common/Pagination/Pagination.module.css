@@ -1,0 +1,9 @@
+.pages {
+    margin: 5px;
+}
+
+.selectedPage {
+    font-weight: bold;
+    color: blue;
+    cursor: pointer;
+}
